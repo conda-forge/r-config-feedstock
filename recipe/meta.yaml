@@ -1,4 +1,4 @@
-{% set version = "0.3" %}
+{% set version = '0.3' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -10,19 +10,23 @@ package:
 source:
   fn: config_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/config_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/config/config_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/config_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/config/config_{{ version }}.tar.gz
   sha256: 5ade6a768db6225634095ac0e71e5710fd1597c15512bac0b45a0b52afb3c750
 
 build:
-  number: 0
-  skip: true  # [win32]
+  merge_build_host: True  # [win]
+  number: 1
+
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+
+  host:
     - r-base
     - r-yaml >=2.1.13
 
@@ -32,7 +36,7 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('config')"  # [not win]
+    - $R -e "library('config')"           # [not win]
     - "\"%R%\" -e \"library('config')\""  # [win]
 
 about:
@@ -42,8 +46,14 @@ about:
     production). Read values using a function that determines the current environment
     and returns the appropriate value.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
