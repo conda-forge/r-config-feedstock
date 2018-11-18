@@ -15,8 +15,9 @@ source:
   sha256: 5ade6a768db6225634095ac0e71e5710fd1597c15512bac0b45a0b52afb3c750
 
 build:
+  noarch: generic
   merge_build_host: True  # [win]
-  number: 1
+  number: 1001
 
   rpaths:
     - lib/R/lib/
@@ -46,8 +47,7 @@ about:
     production). Read values using a function that determines the current environment
     and returns the appropriate value.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
 
 extra:
   recipe-maintainers:
