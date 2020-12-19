@@ -1,4 +1,4 @@
-{% set version = '0.3' %}
+{% set version = "0.3.1" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,12 +12,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/config_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/config/config_{{ version }}.tar.gz
-  sha256: 5ade6a768db6225634095ac0e71e5710fd1597c15512bac0b45a0b52afb3c750
+  sha256: d48878be8f47041e4ffeaa449dd1e5f48f6174a4592e465913e72b6cf6b95f50
 
 build:
   noarch: generic
-  merge_build_host: True  # [win]
-  number: 1003
+  merge_build_host: true  # [win]
+  number: 0
 
   rpaths:
     - lib/R/lib/
@@ -43,11 +43,9 @@ test:
 about:
   home: https://github.com/rstudio/config
   license: GPL-3
-  summary: Manage configuration values across multiple environments (e.g. development, test,
-    production). Read values using a function that determines the current environment
-    and returns the appropriate value.
+  summary: Manage configuration values across multiple environments (e.g. development, test, production). Read values using a function that determines the current environment and returns the appropriate value.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
