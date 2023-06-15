@@ -1,11 +1,11 @@
-About r-config
-==============
+About r-config-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-config-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/rstudio/config
 
 Package license: GPL-3.0-only
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-config-feedstock/blob/main/LICENSE.txt)
 
 Summary: Manage configuration values across multiple environments (e.g. development, test, production). Read values using a function that determines the current environment and returns the appropriate value.
 
